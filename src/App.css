@@ -1,38 +1,138 @@
 .App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+  font-size: 16px;
+  height: 100vh;
   display: flex;
+  flex-direction: row;
+  background-color: beige;
+}
+
+/*setting up the structure of the website*/
+
+.menu {
+  display: flex;
+  flex: 1;
+  background-color: brown;
+}
+
+.data-container {
+  display: flex;
+  flex: 4;
   flex-direction: column;
+  background-color: tomato;
+}
+
+.today-forecast-container {
+  display: flex;
+  flex: 2;
+  background-color: rosybrown;
+}
+
+.detailed-data-container {
+  display: flex;
+  flex: 3;
+  flex-direction: column;
+}
+
+.row {
+  display: flex;
+  flex: 1;
+}
+
+.precipitation-data-container {
+  display: flex;
+  flex: 1;
+  background-color: azure;
+}
+
+.humidity-data-container {
+  display: flex;
+  flex: 1;
+  background-color: thistle;
+}
+
+.wind-data-container {
+  display: flex;
+  flex: 1;
+  background-color: steelblue;
+}
+
+.other-data-container {
+  display: flex;
+  flex: 1;
+  background-color: slategray;
+}
+
+/*structuring inside each section of the webite*/
+
+.inner-container {
+  display: flex;
+  flex: 1;
+  background-color: peachpuff;
+  margin: 5px;
+  padding: 5px;
+}
+
+.row .inner-container {
+  margin-top: 0;
+}
+
+.current-forecast-container {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  background-color: blueviolet;
+}
+
+.hourly-forecast-container {
+  display: flex;
+  flex: 1;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  background-color: cadetblue;
 }
 
-.App-link {
-  color: #61dafb;
+/*current forecast container contents*/
+
+.weather-container {
+  display: flex;
+  flex: 1;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.actual-weather-container {
+  display: flex;
+  align-items: center;
+  background-color: antiquewhite;
+}
+
+.feels-like-container {
+  display: flex;
+  align-items: center;
+  background-color: azure;
+}
+
+/*detailed data container structuring*/
+.data-text-container {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  background-color: tomato;
+}
+
+.title-container {
+  display: flex;
+  align-items: center;
+  background-color: steelblue;
+}
+
+.percipitation-amount-container {
+  display: flex;
+  flex: 1;
+  align-items: flex-start;
+}
+
+/*percipitation container structuring*/
+.radial-chart-container {
+  display: flex;
+  flex: 1;
+  background-color: violet;
 }
