@@ -1,0 +1,20 @@
+/*restructring for 768px-1024px*/
+@media (min-width: 768px) {
+  .today-forecast-container .inner-container {
+    flex-direction: column;
+  }
+
+  .row {
+    flex-direction: column;
+  }
+}
+
+@media (min-width: 1024px) {
+  .today-forecast-container .inner-container {
+    flex-direction: row;
+  }
+
+  .row {
+    flex-direction: row;
+  }
+}

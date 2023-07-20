@@ -28,6 +28,13 @@
   background-color: rosybrown;
 }
 
+.ResponsiveContainer {
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+}
+
 .detailed-data-container {
   display: flex;
   flex: 3;
@@ -79,7 +86,6 @@
 
 .current-forecast-container {
   display: flex;
-  flex: 1;
   flex-direction: column;
   background-color: blueviolet;
 }
@@ -161,15 +167,22 @@
 }
 
 /*menu structuring*/
+.search-button {
+  cursor: pointer;
+  background-color: aqua;
+}
+
 .search-container {
   display: flex;
-  flex: 1;
+
   background-color: bisque;
 }
 
-.search-results-container {
+.search-history-container {
   display: flex;
   flex: 10;
+  flex-direction: column;
+  overflow: auto;
   background-color: cadetblue;
 }
 
@@ -177,4 +190,27 @@
   display: flex;
   flex: 1;
   background-color: thistle;
+}
+
+.dark-mode-button {
+  display: flex;
+  flex: 2;
+  background-color: antiquewhite;
+}
+
+.metric-system-button {
+  display: flex;
+  flex: 1;
+  background-color: coral;
+}
+
+.imperial-system-button {
+  display: flex;
+  flex: 1;
+  background-color: seagreen;
+}
+
+.button {
+  align-items: center;
+  justify-content: center;
 }

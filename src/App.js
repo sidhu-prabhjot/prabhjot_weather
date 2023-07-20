@@ -1,4 +1,5 @@
 import "./App.css";
+import "./AppResponsive.css";
 import React, { useState, useEffect } from "react";
 
 /*weather icons*/
@@ -11,6 +12,7 @@ import {
   WiSmallCraftAdvisory,
   WiDirectionUp,
   WiDegrees,
+  WiFahrenheit,
 } from "weather-icons-react";
 
 /*UI icons from feather */
@@ -28,6 +30,9 @@ import {
   RadialBar,
   ResponsiveContainer,
 } from "recharts";
+
+/*importing custom components*/
+import HistoryCard from "./components/HistoryCard";
 
 function App() {
   const apiKey = "c4a76c95b19b477ab47215455231807";
@@ -52,6 +57,17 @@ function App() {
 
   //for storing search bar contents
   const [searchTerm, setSearchTerm] = useState("");
+
+  //for storing the search history
+  const [searchHistory, setSearchHistory] = useState([]);
+  const [index, setIndex] = useState(0);
+
+  //unit switching between metric and imperial
+  const [liquidUnit, setLiquidUnit] = useState("mm");
+  const [degreesUnit, setDegreeUnit] = useState(<WiCelsius></WiCelsius>);
+  const [speedUnit, setSpeedUnit] = useState("kph");
+  const [distanceUnit, setDistanceUnit] = useState("km");
+  const [pressureUnit, setPressureUnit] = useState("mb");
 
   //function to fetch from API
   const fetchWeather = (keyCity, days) => {
@@ -108,8 +124,28 @@ function App() {
         });
       }
 
-      setHourlyTemp(tempData);
+      //update search history
+      let tempSearchHistory = [...searchHistory]; // Create a new copy of the array
 
+      //check for duplicates in search history
+      const foundObject = tempSearchHistory.find((item) => {
+        return item.city === name; // Add a return statement here
+      });
+
+      if (!foundObject) {
+        tempSearchHistory.push({
+          city: name,
+          region: region,
+          lastUpdated: last_updated,
+          index: index,
+        });
+        setIndex(index + 1);
+      }
+
+      // Now update the state with the new search history
+      setSearchHistory(tempSearchHistory);
+
+      setHourlyTemp(tempData);
       setCity(name);
       setRegion(region);
       setLastUpdated(last_updated);
@@ -126,6 +162,36 @@ function App() {
       setPressure(pressure_mb);
     }
   }, [data]);
+
+  console.log(data);
+
+  const changeToImperial = () => {
+    setTemp(data.current.temp_f);
+    setFeelsLike(data.current.feelslike_f);
+    setPrecipitation(data.current.precip_in);
+    setVisibility(data.current.vis_miles);
+    setWindSpeed(data.current.wind_mph);
+    setPressure(data.current.pressure_in);
+    setSpeedUnit("mph");
+    setDegreeUnit(<WiFahrenheit></WiFahrenheit>);
+    setLiquidUnit("in");
+    setDistanceUnit("miles");
+    setPressureUnit("in");
+  };
+
+  const changeToMetric = () => {
+    setTemp(data.current.temp_c);
+    setFeelsLike(data.current.feelslike_c);
+    setPrecipitation(data.current.precip_mm);
+    setVisibility(data.current.vis_km);
+    setWindSpeed(data.current.wind_kph);
+    setPressure(data.current.pressure_mb);
+    setSpeedUnit("kph");
+    setDegreeUnit(<WiCelsius></WiCelsius>);
+    setLiquidUnit("mm");
+    setDistanceUnit("km");
+    setPressureUnit("mb");
+  };
 
   /*percipitation data for radial bar chart*/
   let percipitationData = [
@@ -171,11 +237,35 @@ function App() {
             className="search-button"
             onClick={() => fetchWeather(searchTerm, 7)}
           >
-            <Search size={24} stroke="#fff" />
+            <Search stroke="#fff" />
           </div>
         </div>
-        <div className="search-results-container">Results</div>
-        <div className="settings-container">settings</div>
+        <div className="search-history-container">
+          {searchHistory.map((item, index) => (
+            <HistoryCard
+              key={index} // Make sure to provide a unique key for each item in the array
+              city={item.city}
+              region={item.region}
+              lastUpdated={item.lastUpdated}
+              onClick={() => fetchWeather(item.city, 7)}
+            />
+          ))}
+        </div>
+        <div className="settings-container">
+          <div className="button dark-mode-button">Dark Mode</div>
+          <div
+            className="button metric-system-button"
+            onClick={() => changeToMetric()}
+          >
+            M
+          </div>
+          <div
+            className=" button imperial-system-button"
+            onClick={() => changeToImperial()}
+          >
+            I
+          </div>
+        </div>
       </div>
       <div className="data-container">
         <div className="today-forecast-container">
@@ -191,12 +281,12 @@ function App() {
                 <div className="actual-weather-container">
                   <WiDaySunny size={24} color="#000"></WiDaySunny>
                   <p>{temp}</p>
-                  <WiCelsius size={24} color="#000"></WiCelsius>
+                  {degreesUnit}
                 </div>
                 <div className="feels-like-container">
                   <p>FEELS LIKE</p>
                   <p>{feelsLike}</p>
-                  <WiCelsius></WiCelsius>
+                  {degreesUnit}
                 </div>
               </div>
               <div className="weather-type-container">
@@ -205,17 +295,7 @@ function App() {
             </div>
             <div className="hourly-forecast-container">
               <ResponsiveContainer>
-                <LineChart
-                  width={500}
-                  height={300}
-                  data={hourlyTemp}
-                  margin={{
-                    top: 5,
-                    right: 30,
-                    left: 20,
-                    bottom: 5,
-                  }}
-                >
+                <LineChart data={hourlyTemp}>
                   <CartesianGrid strokeDasharray="3 3" />
                   <XAxis dataKey="hour" />
                   <YAxis />
@@ -242,7 +322,7 @@ function App() {
                   </div>
                   <div className="percipitation-amount-container">
                     <p className="main-amount-title">{precipitation}</p>
-                    <p>mm</p>
+                    <p>{liquidUnit}</p>
                   </div>
                 </div>
                 <ResponsiveContainer className="radial-chart-container">
@@ -304,7 +384,7 @@ function App() {
                   </div>
                   <div className="percipitation-amount-container">
                     <p className="main-amount-title">{windSpeed}</p>
-                    <p>kph</p>
+                    <p>{speedUnit}</p>
                   </div>
                 </div>
                 <div className="radial-chart-container">
@@ -325,7 +405,7 @@ function App() {
                   </div>
                   <div className="percipitation-amount-container">
                     <p className="main-amount-title">9</p>
-                    <p>mm</p>
+                    <p>{liquidUnit}</p>
                   </div>
                 </div>
                 <div className="radial-chart-container">
@@ -338,13 +418,17 @@ function App() {
                   <div className="index-container">
                     <p>Visibility</p>
                     <div className="index-indicator-container">
-                      <p>{visibility} km</p>
+                      <p>
+                        {visibility} {distanceUnit}
+                      </p>
                     </div>
                   </div>
                   <div className="index-container">
                     <p>Pressure</p>
                     <div className="index-indicator-container">
-                      <p>{pressure} mb</p>
+                      <p>
+                        {pressure} {pressureUnit}
+                      </p>
                     </div>
                   </div>
                 </div>

@@ -1,0 +1,26 @@
+.card-container {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  background-color: salmon;
+  margin: 2px 0 2px 0;
+  padding: 5px;
+}
+
+.card-container p {
+  margin: 0;
+}
+
+.information-container {
+  display: flex;
+  flex: 5;
+  flex-direction: column;
+}
+
+.location {
+  margin-bottom: 5px;
+}
+
+.last-updated {
+  font-size: 0.8em;
+}
