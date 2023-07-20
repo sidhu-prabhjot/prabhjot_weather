@@ -11,6 +11,7 @@
 .menu {
   display: flex;
   flex: 1;
+  flex-direction: column;
   background-color: brown;
 }
 
@@ -135,4 +136,45 @@
   display: flex;
   flex: 1;
   background-color: violet;
+}
+
+/*other indexes container structuring*/
+.other-data-container .radial-chart-container {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 2px 2px 2px 0;
+}
+
+.index-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.index-container p {
+  margin: 0;
+}
+
+.index-indicator-container {
+  margin-left: 4px;
+}
+
+/*menu structuring*/
+.search-container {
+  display: flex;
+  flex: 1;
+  background-color: bisque;
+}
+
+.search-results-container {
+  display: flex;
+  flex: 10;
+  background-color: cadetblue;
+}
+
+.settings-container {
+  display: flex;
+  flex: 1;
+  background-color: thistle;
 }
