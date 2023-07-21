@@ -1,20 +1,130 @@
 /*restructring for 768px-1024px*/
 @media (min-width: 768px) {
+  .App {
+    height: auto;
+  }
+
   .today-forecast-container .inner-container {
     flex-direction: column;
   }
 
+  .main-title {
+    font-size: 1.8em;
+    margin-bottom: 0;
+  }
+
+  .minor-data {
+    font-size: 0.9em;
+    margin-top: 0;
+  }
+
+  .actual-weather-container {
+    justify-content: center;
+    align-items: center;
+    border-right: 2px solid #0582ca;
+  }
+
+  .weather-text {
+    font-size: 1.8em;
+    margin: 0;
+  }
+
+  .condition-text {
+    font-size: 1em;
+    padding: 0 10px 0 0;
+  }
+
+  .feels-like-container p {
+    padding: 0 0 0 10px;
+  }
+
+  .current-forecast-container {
+    margin-bottom: 20px;
+  }
+
   .row {
     flex-direction: column;
+  }
+
+  .chart-container {
+    justify-content: flex-start;
+  }
+
+  .chart-1024 {
+    display: none;
+  }
+
+  .chart-1440 {
+    display: none;
+  }
+
+  .chart-2560 {
+    display: none;
   }
 }
 
 @media (min-width: 1024px) {
+  .App {
+    height: 100vh;
+  }
+
   .today-forecast-container .inner-container {
     flex-direction: row;
   }
 
   .row {
     flex-direction: row;
+  }
+
+  .chart-768 {
+    display: none;
+  }
+
+  .chart-1024 {
+    display: flex;
+  }
+
+  .chart-1440 {
+    display: none;
+  }
+
+  .chart-2560 {
+    display: none;
+  }
+}
+
+@media (min-width: 1440px) {
+  .chart-768 {
+    display: none;
+  }
+
+  .chart-1024 {
+    display: none;
+  }
+
+  .chart-1440 {
+    display: flex;
+  }
+
+  .chart-2560 {
+    display: none;
+  }
+}
+
+@media (min-width: 1440px) {
+  .chart-768 {
+    display: none;
+  }
+
+  .chart-1024 {
+    display: none;
+  }
+
+  .chart-1440 {
+    display: none;
+  }
+
+  .chart-2560 {
+    display: flex;
   }
 }

@@ -2,9 +2,14 @@
   cursor: pointer;
   display: flex;
   align-items: center;
-  background-color: salmon;
-  margin: 2px 0 2px 0;
+  background-color: #003554;
+  margin: 2px 2px 2px 2px;
   padding: 5px;
+  transition: 0.3s;
+}
+
+.card-container:hover {
+  background-color: #001e2f;
 }
 
 .card-container p {

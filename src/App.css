@@ -1,9 +1,9 @@
 .App {
   font-size: 16px;
-  height: 100vh;
   display: flex;
   flex-direction: row;
-  background-color: beige;
+  background-color: #051923;
+  color: white;
 }
 
 /*setting up the structure of the website*/
@@ -12,20 +12,19 @@
   display: flex;
   flex: 1;
   flex-direction: column;
-  background-color: brown;
+  background-color: #006494;
+  margin: 4px 0 4px 4px;
 }
 
 .data-container {
   display: flex;
   flex: 4;
   flex-direction: column;
-  background-color: tomato;
 }
 
 .today-forecast-container {
   display: flex;
   flex: 2;
-  background-color: rosybrown;
 }
 
 .ResponsiveContainer {
@@ -49,25 +48,21 @@
 .precipitation-data-container {
   display: flex;
   flex: 1;
-  background-color: azure;
 }
 
 .humidity-data-container {
   display: flex;
   flex: 1;
-  background-color: thistle;
 }
 
 .wind-data-container {
   display: flex;
   flex: 1;
-  background-color: steelblue;
 }
 
 .other-data-container {
   display: flex;
   flex: 1;
-  background-color: slategray;
 }
 
 /*structuring inside each section of the webite*/
@@ -75,9 +70,9 @@
 .inner-container {
   display: flex;
   flex: 1;
-  background-color: peachpuff;
   margin: 5px;
   padding: 5px;
+  background-color: #003554;
 }
 
 .row .inner-container {
@@ -87,7 +82,6 @@
 .current-forecast-container {
   display: flex;
   flex-direction: column;
-  background-color: blueviolet;
 }
 
 .hourly-forecast-container {
@@ -95,7 +89,15 @@
   flex: 1;
   align-items: center;
   justify-content: center;
-  background-color: cadetblue;
+}
+
+.chart-container {
+  display: flex;
+  flex: 1;
+  height: 100%;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
 }
 
 /*current forecast container contents*/
@@ -103,18 +105,17 @@
 .weather-container {
   display: flex;
   flex: 1;
+  align-items: center;
 }
 
 .actual-weather-container {
   display: flex;
   align-items: center;
-  background-color: antiquewhite;
 }
 
 .feels-like-container {
   display: flex;
   align-items: center;
-  background-color: azure;
 }
 
 /*detailed data container structuring*/
@@ -122,13 +123,13 @@
   display: flex;
   flex: 1;
   flex-direction: column;
-  background-color: tomato;
+  align-items: center;
 }
 
 .title-container {
   display: flex;
   align-items: center;
-  background-color: steelblue;
+  font-size: 1.2em;
 }
 
 .percipitation-amount-container {
@@ -137,11 +138,19 @@
   align-items: flex-start;
 }
 
+.percipitation-amount-container p {
+  font-size: 1.1em;
+}
+
 /*percipitation container structuring*/
 .radial-chart-container {
   display: flex;
   flex: 1;
-  background-color: violet;
+}
+
+.indicator-icon {
+  font-size: 1.4em;
+  margin-right: 5px;
 }
 
 /*other indexes container structuring*/
@@ -168,22 +177,31 @@
 
 /*menu structuring*/
 .search-button {
+  display: flex;
+  padding: 2px;
   cursor: pointer;
-  background-color: aqua;
+  background-color: #001e2f;
+}
+
+.search-bar {
+  border: none;
+  height: 24px;
+  padding-right: 2px;
+  font-size: 0.9em;
 }
 
 .search-container {
   display: flex;
-
-  background-color: bisque;
+  flex: 1;
+  align-items: center;
+  margin: 0 4px 0 4px;
 }
 
 .search-history-container {
   display: flex;
-  flex: 10;
+  flex: 12;
   flex-direction: column;
   overflow: auto;
-  background-color: cadetblue;
 }
 
 .settings-container {
@@ -195,22 +213,48 @@
 .dark-mode-button {
   display: flex;
   flex: 2;
-  background-color: antiquewhite;
+  background-color: #003554;
+  cursor: pointer;
+  border-right: 2px solid #006494;
 }
 
 .metric-system-button {
   display: flex;
   flex: 1;
-  background-color: coral;
+  background-color: #003554;
+  cursor: pointer;
+  border-right: 2px solid #006494;
 }
 
 .imperial-system-button {
   display: flex;
   flex: 1;
-  background-color: seagreen;
+  background-color: #003554;
+  cursor: pointer;
 }
 
 .button {
+  align-items: center;
+  justify-content: center;
+  transition: 0.3s;
+}
+
+.button:hover {
+  background-color: #001e2f;
+}
+
+/*wind direction container structuring*/
+.wind-direction-container {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2em;
+}
+
+.text-degree-container {
+  display: flex;
   align-items: center;
   justify-content: center;
 }

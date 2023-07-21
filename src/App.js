@@ -13,6 +13,12 @@ import {
   WiDirectionUp,
   WiDegrees,
   WiFahrenheit,
+  WiDirectionUpRight,
+  WiDirectionUpLeft,
+  WiDirectionDownRight,
+  WiDirectionRight,
+  WiDirectionDown,
+  WiDirectionLeft,
 } from "weather-icons-react";
 
 /*UI icons from feather */
@@ -54,6 +60,8 @@ function App() {
   const [windDirection, setWindDirection] = useState("");
   const [windSpeed, setWindSpeed] = useState("");
   const [windDegree, setWindDegree] = useState("");
+  const [sunrise, setSunrise] = useState("");
+  const [sunset, setSunset] = useState("");
 
   //for storing search bar contents
   const [searchTerm, setSearchTerm] = useState("");
@@ -109,7 +117,10 @@ function App() {
         },
         forecast: {
           forecastday: {
-            0: { hour },
+            0: {
+              hour,
+              astro: { sunrise, sunset },
+            },
           },
         },
       } = data;
@@ -160,6 +171,8 @@ function App() {
       setWindDegree(wind_degree);
       setUV(uv);
       setPressure(pressure_mb);
+      setSunrise(sunrise);
+      setSunset(sunset);
     }
   }, [data]);
 
@@ -191,6 +204,49 @@ function App() {
     setLiquidUnit("mm");
     setDistanceUnit("km");
     setPressureUnit("mb");
+  };
+
+  /*function to retrieve wind direction icons*/
+  const getWindDirectionIcon = (windDirection) => {
+    if (windDirection.includes("N") && windDirection.includes("E")) {
+      return (
+        <WiDirectionUpRight
+          className="wind-icon"
+          size={32}
+        ></WiDirectionUpRight>
+      );
+    } else if (windDirection.includes("N") && windDirection.includes("W")) {
+      return (
+        <WiDirectionUpLeft className="wind-icon" size={56}></WiDirectionUpLeft>
+      );
+    } else if (windDirection === "N") {
+      return <WiDirectionUp className="wind-icon" size={56}></WiDirectionUp>;
+    } else if (windDirection.includes("E") && windDirection.includes("S")) {
+      return (
+        <WiDirectionDownRight
+          className="wind-icon"
+          size={56}
+        ></WiDirectionDownRight>
+      );
+    } else if (windDirection === "E") {
+      return (
+        <WiDirectionRight className="wind-icon" size={56}></WiDirectionRight>
+      );
+    } else if (windDirection.includes("S") && windDirection.includes("W")) {
+      return (
+        <WiDirectionUpLeft className="wind-icon" size={56}></WiDirectionUpLeft>
+      );
+    } else if (windDirection === "S") {
+      return (
+        <WiDirectionDown className="wind-icon" size={56}></WiDirectionDown>
+      );
+    } else if (windDirection === "W") {
+      return (
+        <WiDirectionLeft className="wind-icon" size={56}></WiDirectionLeft>
+      );
+    } else {
+      return <p>N/A</p>;
+    }
   };
 
   /*percipitation data for radial bar chart*/
@@ -231,6 +287,7 @@ function App() {
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               placeholder="City name..."
+              className="search-bar"
             />
           </div>
           <div
@@ -279,23 +336,25 @@ function App() {
               </div>
               <div className="weather-container">
                 <div className="actual-weather-container">
-                  <WiDaySunny size={24} color="#000"></WiDaySunny>
-                  <p>{temp}</p>
-                  {degreesUnit}
+                  <WiDaySunny size={56} color="#fff"></WiDaySunny>
+                  <p className="weather-text">
+                    {temp}
+                    {degreesUnit}
+                  </p>
+                  <p className="condition-text">{condition}</p>
                 </div>
+
                 <div className="feels-like-container">
-                  <p>FEELS LIKE</p>
-                  <p>{feelsLike}</p>
-                  {degreesUnit}
+                  <p>
+                    feels like: {feelsLike}
+                    {degreesUnit}
+                  </p>
                 </div>
-              </div>
-              <div className="weather-type-container">
-                <p>{condition}</p>
               </div>
             </div>
             <div className="hourly-forecast-container">
-              <ResponsiveContainer>
-                <LineChart data={hourlyTemp}>
+              <div className="chart-container chart-768">
+                <LineChart data={hourlyTemp} height={200} width={500}>
                   <CartesianGrid strokeDasharray="3 3" />
                   <XAxis dataKey="hour" />
                   <YAxis />
@@ -303,11 +362,53 @@ function App() {
                   <Line
                     type="monotone"
                     dataKey="temp"
-                    stroke="#000"
+                    stroke="#fff"
                     activeDot={{ temp: 8 }}
                   />
                 </LineChart>
-              </ResponsiveContainer>
+              </div>
+              <div className="chart-container chart-1024">
+                <LineChart data={hourlyTemp} height={200} width={700}>
+                  <CartesianGrid strokeDasharray="3 3" />
+                  <XAxis dataKey="hour" />
+                  <YAxis />
+                  <Tooltip />
+                  <Line
+                    type="monotone"
+                    dataKey="temp"
+                    stroke="#fff"
+                    activeDot={{ temp: 8 }}
+                  />
+                </LineChart>
+              </div>
+              <div className="chart-container chart-1440">
+                <LineChart data={hourlyTemp} height={200} width={900}>
+                  <CartesianGrid strokeDasharray="3 3" />
+                  <XAxis dataKey="hour" />
+                  <YAxis />
+                  <Tooltip />
+                  <Line
+                    type="monotone"
+                    dataKey="temp"
+                    stroke="#fff"
+                    activeDot={{ temp: 8 }}
+                  />
+                </LineChart>
+              </div>
+              <div className="chart-container chart-2560">
+                <LineChart data={hourlyTemp} height={200} width={1600}>
+                  <CartesianGrid strokeDasharray="3 3" />
+                  <XAxis dataKey="hour" />
+                  <YAxis />
+                  <Tooltip />
+                  <Line
+                    type="monotone"
+                    dataKey="temp"
+                    stroke="#fff"
+                    activeDot={{ temp: 8 }}
+                  />
+                </LineChart>
+              </div>
             </div>
           </div>
         </div>
@@ -317,7 +418,7 @@ function App() {
               <div className="inner-container">
                 <div className="data-text-container">
                   <div className="title-container">
-                    <WiRaindrop></WiRaindrop>
+                    <WiRaindrop className="indicator-icon"></WiRaindrop>
                     <p className="title">Percipitation</p>
                   </div>
                   <div className="percipitation-amount-container">
@@ -347,7 +448,7 @@ function App() {
               <div className="inner-container">
                 <div className="data-text-container">
                   <div className="title-container">
-                    <WiHumidity></WiHumidity>
+                    <WiHumidity className="indicator-icon"></WiHumidity>
                     <p className="title">Humidity</p>
                   </div>
                   <div className="percipitation-amount-container">
@@ -379,7 +480,7 @@ function App() {
               <div className="inner-container">
                 <div className="data-text-container">
                   <div className="title-container">
-                    <WiStrongWind></WiStrongWind>
+                    <WiStrongWind className="indicator-icon"></WiStrongWind>
                     <p className="title">Wind</p>
                   </div>
                   <div className="percipitation-amount-container">
@@ -387,12 +488,12 @@ function App() {
                     <p>{speedUnit}</p>
                   </div>
                 </div>
-                <div className="radial-chart-container">
-                  <WiDirectionUp></WiDirectionUp>
-                  <p>
+                <div className="wind-direction-container">
+                  {getWindDirectionIcon(windDirection)}
+                  <div className="text-degree-container">
                     {windDirection}, {windDegree}
-                    <WiDegrees></WiDegrees>
-                  </p>
+                    <WiDegrees size={32}></WiDegrees>
+                  </div>
                 </div>
               </div>
             </div>
@@ -400,13 +501,10 @@ function App() {
               <div className="inner-container">
                 <div className="data-text-container">
                   <div className="title-container">
-                    <WiSmallCraftAdvisory></WiSmallCraftAdvisory>
+                    <WiSmallCraftAdvisory className="indicator-icon"></WiSmallCraftAdvisory>
                     <p className="title">Other Indexes</p>
                   </div>
-                  <div className="percipitation-amount-container">
-                    <p className="main-amount-title">9</p>
-                    <p>{liquidUnit}</p>
-                  </div>
+                  <div className="percipitation-amount-container"></div>
                 </div>
                 <div className="radial-chart-container">
                   <div className="index-container">
@@ -429,6 +527,18 @@ function App() {
                       <p>
                         {pressure} {pressureUnit}
                       </p>
+                    </div>
+                  </div>
+                  <div className="index-container">
+                    <p>Sunrise</p>
+                    <div className="index-indicator-container">
+                      <p>{sunrise}</p>
+                    </div>
+                  </div>
+                  <div className="index-container">
+                    <p>Sunset</p>
+                    <div className="index-indicator-container">
+                      <p>{sunset}</p>
                     </div>
                   </div>
                 </div>
