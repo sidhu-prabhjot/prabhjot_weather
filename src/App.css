@@ -163,6 +163,11 @@
 .weather-text {
   font-size: 1.8em;
   margin: 0;
+  display: flex;
+}
+
+.feels-like-container {
+  margin-left: 4px;
 }
 /*detailed data container structuring*/
 .data-text-container {
@@ -256,7 +261,7 @@
   display: flex;
   flex: 12;
   flex-direction: column;
-  overflow: auto;
+  overflow: scroll;
 }
 
 .settings-container {

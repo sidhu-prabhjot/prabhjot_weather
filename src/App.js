@@ -105,7 +105,7 @@ function App() {
   const [windDirectionIconSize, setWindDirectionIconSize] = useState(100);
 
   //error handling
-  const [errMsg, setErrMsg] = useState("location does not exist in database");
+  const [errMsg, setErrMsg] = useState("");
 
   //function to fetch from API
   const fetchWeather = (keyCity, days) => {
@@ -124,12 +124,14 @@ function App() {
         })
         .then((data) => setData(data))
         .then(setErrMsg(null))
+        .then(changeToMetric())
         .catch((error) => console.log(errMsg));
     }
   };
 
   useEffect(() => {
     fetchWeather("guelph", 7);
+    changeToMetric();
   }, []);
 
   // Once data is available, set the state variables with destructuring
@@ -219,8 +221,6 @@ function App() {
       setSunset(sunset);
     }
   }, [data]);
-
-  console.log(data);
 
   const changeToImperial = () => {
     setTemp(data.current.temp_f);
@@ -322,8 +322,8 @@ function App() {
     let hour = parseInt(hourStr);
 
     //above 19 hours is night
-    if (hour < 19) {
-      if (weatherCondition === "sunny") {
+    if (hour > 6 && hour < 19) {
+      if (weatherCondition === "sunny" || weatherCondition.includes("clear")) {
         return (
           <WiDaySunny
             className="condition-icon"
@@ -392,7 +392,10 @@ function App() {
           size={56}
           color={darkMode ? "#fff" : "#000"}
         ></WiDaySleet>;
-      } else if (weatherCondition.includes("fog")) {
+      } else if (
+        weatherCondition.includes("fog") ||
+        weatherCondition === "fog"
+      ) {
         <WiDayFog
           className="condition-icon"
           size={56}
@@ -453,7 +456,7 @@ function App() {
           <WiNightRain
             className="condition-icon"
             size={56}
-            color="#fff"
+            color={darkMode ? "#fff" : "#000"}
           ></WiNightRain>
         );
       } else if (
@@ -463,19 +466,22 @@ function App() {
         <WiNightSnow
           className="condition-icon"
           size={56}
-          color="#fff"
+          color={darkMode ? "#fff" : "#000"}
         ></WiNightSnow>;
       } else if (weatherCondition.includes("sleet")) {
         <WiNightSleet
           className="condition-icon"
           size={56}
-          color="#fff"
+          color={darkMode ? "#fff" : "#000"}
         ></WiNightSleet>;
-      } else if (weatherCondition.includes("fog")) {
+      } else if (
+        weatherCondition.includes("fog") ||
+        weatherCondition === "fog"
+      ) {
         <WiNightFog
           className="condition-icon"
           size={56}
-          color="#fff"
+          color={darkMode ? "#fff" : "#000"}
         ></WiNightFog>;
       } else {
         return <p>N/A</p>;
@@ -592,7 +598,7 @@ function App() {
         <div className="settings-container">
           <div
             className={`button dark-mode-button ${
-              darkMode ? "dark-b" : "light-b"
+              darkMode ? "dark-d" : "light-b"
             }`}
             onClick={() => toggleDarkMode()}
           >
@@ -600,7 +606,7 @@ function App() {
           </div>
           <div
             className={`button metric-system-button ${
-              darkMode ? "dark-b" : "light-b"
+              darkMode ? "dark-d" : "light-b"
             }`}
             onClick={() => changeToMetric()}
           >
@@ -608,7 +614,7 @@ function App() {
           </div>
           <div
             className={`button imperial-system-button ${
-              darkMode ? "dark-b" : "light-b"
+              darkMode ? "dark-d" : "light-b"
             }`}
             onClick={() => changeToImperial()}
           >
@@ -629,18 +635,18 @@ function App() {
               <div className="weather-container">
                 <div className="actual-weather-container">
                   {getWeatherConditionIcon(condition, lastUpdated)}
-                  <p className="weather-text">
+                  <div className="weather-text">
                     {temp}
                     {degreesUnit}
-                  </p>
+                  </div>
                   <p className="condition-text">{condition}</p>
                 </div>
 
                 <div className="feels-like-container">
-                  <p>
+                  <div className="feels-like-text">
                     feels like: {feelsLike}
                     {degreesUnit}
-                  </p>
+                  </div>
                 </div>
               </div>
             </div>
