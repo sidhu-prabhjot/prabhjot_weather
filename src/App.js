@@ -100,10 +100,12 @@ function App() {
 
   //dark mode toggling
   const [darkMode, setDarkMode] = useState(true);
-  const [darkModeText, setDarkModeText] = useState("Light Mode");
 
   //icon sizing
   const [windDirectionIconSize, setWindDirectionIconSize] = useState(100);
+
+  //error handling
+  const [errMsg, setErrMsg] = useState("location does not exist in database");
 
   //function to fetch from API
   const fetchWeather = (keyCity, days) => {
@@ -115,13 +117,14 @@ function App() {
       fetch(apiURL)
         .then((response) => {
           if (!response.ok) {
+            setErrMsg("location not found in database");
             throw new Error("Bad request");
           }
           return response.json();
         })
         .then((data) => setData(data))
-        .then(console.log("fetch"))
-        .catch((error) => window.alert("location not found in database"));
+        .then(setErrMsg(null))
+        .catch((error) => console.log(errMsg));
     }
   };
 
@@ -495,10 +498,8 @@ function App() {
   const toggleDarkMode = () => {
     if (darkMode === false) {
       setDarkMode(true);
-      setDarkModeText("Dark Mode");
     } else {
       setDarkMode(false);
-      setDarkModeText("Light Mode");
     }
   };
 
@@ -562,6 +563,7 @@ function App() {
             <Book stroke="#fff" />
           </div>
         </div>
+        {<p className="errorMessage">{errMsg}</p>}
         <div className="search-history-container">
           {searchVisible &&
             searchHistory.map((item, index) => (
@@ -594,7 +596,7 @@ function App() {
             }`}
             onClick={() => toggleDarkMode()}
           >
-            {darkModeText}
+            {darkMode ? "Light Mode" : "Dark Mode"}
           </div>
           <div
             className={`button metric-system-button ${
