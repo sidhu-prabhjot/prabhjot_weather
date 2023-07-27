@@ -110,7 +110,7 @@ function App() {
   //function to fetch from API
   const fetchWeather = (keyCity, days) => {
     //define weather API endpoint URL
-    const apiURL = `http://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${keyCity}&days=${days}`;
+    const apiURL = `https://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${keyCity}&days=${days}`;
 
     if (keyCity != null && days != null) {
       //make API call using fetch
