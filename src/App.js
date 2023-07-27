@@ -100,6 +100,7 @@ function App() {
 
   //dark mode toggling
   const [darkMode, setDarkMode] = useState(true);
+  const [darkModeText, setDarkModeText] = useState("Light Mode");
 
   //icon sizing
   const [windDirectionIconSize, setWindDirectionIconSize] = useState(100);
@@ -112,10 +113,15 @@ function App() {
     if (keyCity != null && days != null) {
       //make API call using fetch
       fetch(apiURL)
-        .then((response) => response.json())
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error("Bad request");
+          }
+          return response.json();
+        })
         .then((data) => setData(data))
         .then(console.log("fetch"))
-        .catch((error) => console.log("Error fetching data: " + error));
+        .catch((error) => window.alert("location not found in database"));
     }
   };
 
@@ -489,8 +495,10 @@ function App() {
   const toggleDarkMode = () => {
     if (darkMode === false) {
       setDarkMode(true);
+      setDarkModeText("Dark Mode");
     } else {
       setDarkMode(false);
+      setDarkModeText("Light Mode");
     }
   };
 
@@ -537,7 +545,11 @@ function App() {
           </div>
           <div
             className={`search-button ${darkMode ? "dark-d" : "light-d"}`}
-            onClick={() => fetchWeather(searchTerm, 7)}
+            onClick={() => {
+              try {
+                fetchWeather(searchTerm, 7);
+              } catch (e) {}
+            }}
           >
             <Search stroke="#fff" />
           </div>
@@ -582,7 +594,7 @@ function App() {
             }`}
             onClick={() => toggleDarkMode()}
           >
-            Dark Mode
+            {darkModeText}
           </div>
           <div
             className={`button metric-system-button ${
