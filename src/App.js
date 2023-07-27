@@ -124,14 +124,12 @@ function App() {
         })
         .then((data) => setData(data))
         .then(setErrMsg(null))
-        .then(changeToMetric())
         .catch((error) => console.log(errMsg));
     }
   };
 
   useEffect(() => {
     fetchWeather("guelph", 7);
-    changeToMetric();
   }, []);
 
   // Once data is available, set the state variables with destructuring
@@ -579,7 +577,10 @@ function App() {
                 region={item.region}
                 lastUpdated={item.lastUpdated}
                 darkMode={darkMode}
-                onClick={() => fetchWeather(item.city, 7)}
+                onClick={() => {
+                  fetchWeather(item.city, 7);
+                  changeToMetric();
+                }}
               />
             ))}
         </div>
@@ -591,7 +592,10 @@ function App() {
               region={item.region}
               lastUpdated={item.lastUpdated}
               darkMode={darkMode}
-              onClick={() => fetchWeather(item.city, 7)}
+              onClick={() => {
+                fetchWeather(item.city, 7);
+                changeToMetric();
+              }}
             />
           ))}
         </div>
