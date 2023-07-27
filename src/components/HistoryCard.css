@@ -2,7 +2,6 @@
   cursor: pointer;
   display: flex;
   align-items: center;
-  background-color: #003554;
   margin: 2px 2px 2px 2px;
   padding: 5px;
   transition: 0.3s;
@@ -10,6 +9,7 @@
 
 .card-container:hover {
   background-color: #001e2f;
+  color: white;
 }
 
 .card-container p {
@@ -28,4 +28,46 @@
 
 .last-updated {
   font-size: 0.8em;
+}
+
+/*dark mode styling*/
+.dark-d {
+  background-color: #051923;
+  color: white;
+}
+
+.dark-c {
+  background-color: #001e2f;
+  color: white;
+}
+
+.dark-b {
+  background-color: #003554;
+  color: white;
+}
+
+.dark-a {
+  background-color: #006494;
+  color: white;
+}
+
+/*light mode styling*/
+.light-d {
+  background-color: #6c757d;
+  color: black;
+}
+
+.light-c {
+  background-color: #ced4da;
+  color: black;
+}
+
+.light-b {
+  background-color: #dee2e6;
+  color: black;
+}
+
+.light-a {
+  background-color: #f8f9fa;
+  color: black;
 }

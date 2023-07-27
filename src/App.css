@@ -2,8 +2,48 @@
   font-size: 16px;
   display: flex;
   flex-direction: row;
+}
+
+/*dark mode styling*/
+.dark-d {
   background-color: #051923;
   color: white;
+}
+
+.dark-c {
+  background-color: #001e2f;
+  color: white;
+}
+
+.dark-b {
+  background-color: #003554;
+  color: white;
+}
+
+.dark-a {
+  background-color: #006494;
+  color: white;
+}
+
+/*light mode styling*/
+.light-d {
+  background-color: #6c757d;
+  color: black;
+}
+
+.light-c {
+  background-color: #ced4da;
+  color: black;
+}
+
+.light-b {
+  background-color: #dee2e6;
+  color: black;
+}
+
+.light-a {
+  background-color: #f8f9fa;
+  color: black;
 }
 
 /*setting up the structure of the website*/
@@ -12,7 +52,6 @@
   display: flex;
   flex: 1;
   flex-direction: column;
-  background-color: #006494;
   margin: 4px 0 4px 4px;
 }
 
@@ -72,7 +111,6 @@
   flex: 1;
   margin: 5px;
   padding: 5px;
-  background-color: #003554;
 }
 
 .row .inner-container {
@@ -118,12 +156,21 @@
   align-items: center;
 }
 
+.feels-like-container {
+  font-size: 1.1em;
+}
+
+.weather-text {
+  font-size: 1.8em;
+  margin: 0;
+}
 /*detailed data container structuring*/
 .data-text-container {
   display: flex;
   flex: 1;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
 }
 
 .title-container {
@@ -134,12 +181,11 @@
 
 .percipitation-amount-container {
   display: flex;
-  flex: 1;
   align-items: flex-start;
 }
 
 .percipitation-amount-container p {
-  font-size: 1.1em;
+  font-size: 1.5em;
 }
 
 /*percipitation container structuring*/
@@ -180,7 +226,11 @@
   display: flex;
   padding: 2px;
   cursor: pointer;
+}
+
+.search-button:hover {
   background-color: #001e2f;
+  color: white;
 }
 
 .search-bar {
@@ -207,13 +257,11 @@
 .settings-container {
   display: flex;
   flex: 1;
-  background-color: thistle;
 }
 
 .dark-mode-button {
   display: flex;
   flex: 2;
-  background-color: #003554;
   cursor: pointer;
   border-right: 2px solid #006494;
 }
@@ -221,7 +269,6 @@
 .metric-system-button {
   display: flex;
   flex: 1;
-  background-color: #003554;
   cursor: pointer;
   border-right: 2px solid #006494;
 }
@@ -229,7 +276,6 @@
 .imperial-system-button {
   display: flex;
   flex: 1;
-  background-color: #003554;
   cursor: pointer;
 }
 
@@ -241,6 +287,7 @@
 
 .button:hover {
   background-color: #001e2f;
+  color: white;
 }
 
 /*wind direction container structuring*/
