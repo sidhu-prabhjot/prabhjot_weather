@@ -57,7 +57,7 @@ import {
 import HistoryCard from "./components/HistoryCard";
 
 function App() {
-  const apiKey = "c4a76c95b19b477ab47215455231807";
+  const apiKey = "611f5673b3a144d1bb2165643233107";
 
   //for setting if elements are visible or not
   const [searchVisible, setSearchVisible] = useState(true);
