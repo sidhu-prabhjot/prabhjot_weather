@@ -564,7 +564,7 @@ function App() {
   ];
 
   return (
-    <div className={`App ${darkMode ? "dark-d" : "light-d"}`}>
+    <main className={`App ${darkMode ? "dark-d" : "light-d"}`}>
       <div className={`menu ${darkMode ? "dark-a" : "light-a"}`}>
         <div className="search-container">
           <div className="search-bar">
@@ -689,7 +689,10 @@ function App() {
                 <p className="minor-data">last updated: {lastUpdated}</p>
               </div>
               <div className="weather-container">
-                <div className="actual-weather-container">
+                <div
+                  aria-label="contentinfo"
+                  className="actual-weather-container"
+                >
                   {getWeatherConditionIcon(condition, lastUpdated)}
                   <div className="weather-text">
                     {temp}
@@ -710,12 +713,18 @@ function App() {
             </div>
             <div className="hourly-forecast-container">
               <div className="chart-container chart-375">
-                <LineChart data={hourlyTemp} height={150} width={300}>
+                <LineChart
+                  data={hourlyTemp}
+                  height={150}
+                  width={300}
+                  role="none"
+                >
                   <CartesianGrid strokeDasharray="3 3" />
-                  <XAxis dataKey="hour" />
-                  <YAxis />
-                  <Tooltip />
+                  <XAxis dataKey="hour" role="none" />
+                  <YAxis role="none" />
+                  <Tooltip role="none" />
                   <Line
+                    role="none"
                     type="monotone"
                     dataKey="temp"
                     stroke="#e4b61a"
@@ -724,12 +733,18 @@ function App() {
                 </LineChart>
               </div>
               <div className="chart-container chart-768">
-                <LineChart data={hourlyTemp} height={200} width={500}>
-                  <CartesianGrid strokeDasharray="3 3" />
-                  <XAxis dataKey="hour" />
-                  <YAxis />
-                  <Tooltip />
+                <LineChart
+                  data={hourlyTemp}
+                  height={200}
+                  width={500}
+                  role="none"
+                >
+                  <CartesianGrid strokeDasharray="3 3" role="none" />
+                  <XAxis dataKey="hour" role="none" />
+                  <YAxis role="none" />
+                  <Tooltip role="none" />
                   <Line
+                    role="none"
                     type="monotone"
                     dataKey="temp"
                     stroke="#e4b61a"
@@ -738,12 +753,18 @@ function App() {
                 </LineChart>
               </div>
               <div className="chart-container chart-1024">
-                <LineChart data={hourlyTemp} height={200} width={500}>
-                  <CartesianGrid strokeDasharray="3 3" />
-                  <XAxis dataKey="hour" />
-                  <YAxis />
-                  <Tooltip />
+                <LineChart
+                  data={hourlyTemp}
+                  height={200}
+                  width={500}
+                  role="none"
+                >
+                  <CartesianGrid strokeDasharray="3 3" role="none" />
+                  <XAxis dataKey="hour" role="none" />
+                  <YAxis role="none" />
+                  <Tooltip role="none" />
                   <Line
+                    role="none"
                     type="monotone"
                     dataKey="temp"
                     stroke="#e4b61a"
@@ -752,12 +773,18 @@ function App() {
                 </LineChart>
               </div>
               <div className="chart-container chart-1440">
-                <LineChart data={hourlyTemp} height={200} width={700}>
-                  <CartesianGrid strokeDasharray="3 3" />
-                  <XAxis dataKey="hour" />
-                  <YAxis />
-                  <Tooltip />
+                <LineChart
+                  data={hourlyTemp}
+                  height={200}
+                  width={700}
+                  role="none"
+                >
+                  <CartesianGrid strokeDasharray="3 3" role="none" />
+                  <XAxis dataKey="hour" role="none" />
+                  <YAxis role="none" />
+                  <Tooltip role="none" />
                   <Line
+                    role="none"
                     type="monotone"
                     dataKey="temp"
                     stroke="#e4b61a"
@@ -766,12 +793,18 @@ function App() {
                 </LineChart>
               </div>
               <div className="chart-container chart-2560">
-                <LineChart data={hourlyTemp} height={200} width={1600}>
-                  <CartesianGrid strokeDasharray="3 3" />
-                  <XAxis dataKey="hour" />
-                  <YAxis />
-                  <Tooltip />
+                <LineChart
+                  data={hourlyTemp}
+                  height={200}
+                  width={1600}
+                  role="none"
+                >
+                  <CartesianGrid strokeDasharray="3 3" role="none" />
+                  <XAxis dataKey="hour" role="none" />
+                  <YAxis role="none" />
+                  <Tooltip role="none" />
                   <Line
+                    role="none"
                     type="monotone"
                     dataKey="temp"
                     stroke="#e4b61a"
@@ -807,14 +840,19 @@ function App() {
                     <p>{liquidUnit}</p>
                   </div>
                 </div>
-                <ResponsiveContainer className="radial-chart-container">
+                <ResponsiveContainer
+                  className="radial-chart-container"
+                  role="none"
+                >
                   <RadialBarChart
+                    role="none"
                     innerRadius="80%"
                     outerRadius="50%"
                     barSize={20}
                     data={percipitationData}
                   >
                     <RadialBar
+                      role="none"
                       minAngle={15}
                       background
                       clockWise
@@ -849,12 +887,14 @@ function App() {
                 </div>
                 <ResponsiveContainer className="radial-chart-container">
                   <RadialBarChart
+                    role="none"
                     innerRadius="80%"
                     outerRadius="50%"
                     barSize={20}
                     data={humidityData}
                   >
                     <RadialBar
+                      role="none"
                       minAngle={15}
                       background
                       clockWise
@@ -920,24 +960,32 @@ function App() {
                 </div>
                 <div className="radial-chart-container">
                   <div className="index-container">
-                    <p>UV</p>
+                    <p role="heading" aria-level="3">
+                      UV
+                    </p>
                     <div className="index-indicator-container">
-                      <p>{uv}</p>
+                      <p role="heading" aria-level="3">
+                        {uv}
+                      </p>
                     </div>
                   </div>
                   <div className="double-index">
                     <div className="index-container">
-                      <p>Visibility</p>
+                      <p role="heading" aria-level="3">
+                        Visibility
+                      </p>
                       <div className="index-indicator-container">
-                        <p>
+                        <p role="heading" aria-level="3">
                           {visibility} {distanceUnit}
                         </p>
                       </div>
                     </div>
                     <div className="index-container">
-                      <p>Pressure</p>
+                      <p role="heading" aria-level="3">
+                        Pressure
+                      </p>
                       <div className="index-indicator-container">
-                        <p>
+                        <p role="heading" aria-level="3">
                           {pressure} {pressureUnit}
                         </p>
                       </div>
@@ -945,15 +993,23 @@ function App() {
                   </div>
                   <div className="double-index">
                     <div className="index-container">
-                      <p>Sunrise</p>
+                      <p role="heading" aria-level="3">
+                        Sunrise
+                      </p>
                       <div className="index-indicator-container">
-                        <p>{sunrise}</p>
+                        <p role="heading" aria-level="3">
+                          {sunrise}
+                        </p>
                       </div>
                     </div>
                     <div className="index-container">
-                      <p>Sunset</p>
+                      <p role="heading" aria-level="3">
+                        Sunset
+                      </p>
                       <div className="index-indicator-container">
-                        <p>{sunset}</p>
+                        <p role="heading" aria-level="3">
+                          {sunset}
+                        </p>
                       </div>
                     </div>
                   </div>
@@ -963,7 +1019,7 @@ function App() {
           </div>
         </div>
       </div>
-    </div>
+    </main>
   );
 }
 
