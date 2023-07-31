@@ -549,6 +549,7 @@ function App() {
             />
           </div>
           <div
+            aria-label="Search City Button"
             className={`search-button ${darkMode ? "dark-d" : "light-d"}`}
             onClick={() => {
               try {
@@ -559,6 +560,7 @@ function App() {
             <Search stroke="#fff" />
           </div>
           <div
+            aria-label="Toggle Search History Visbility"
             className={`search-button search-history-button ${
               darkMode ? "dark-d" : "light-d"
             }`}
@@ -601,6 +603,7 @@ function App() {
         </div>
         <div className="settings-container">
           <div
+            aria-label="Toggle Dark Mode"
             className={`button dark-mode-button ${
               darkMode ? "dark-d" : "light-b"
             }`}
@@ -609,6 +612,7 @@ function App() {
             {darkMode ? "Light Mode" : "Dark Mode"}
           </div>
           <div
+            aria-label="Change Unit System To Metric"
             className={`button metric-system-button ${
               darkMode ? "dark-d" : "light-b"
             }`}
@@ -617,6 +621,7 @@ function App() {
             M
           </div>
           <div
+            aria-label="Change Unit System To Imperial"
             className={`button imperial-system-button ${
               darkMode ? "dark-d" : "light-b"
             }`}
