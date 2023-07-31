@@ -93,7 +93,9 @@ function App() {
 
   //unit switching between metric and imperial
   const [liquidUnit, setLiquidUnit] = useState("mm");
-  const [degreesUnit, setDegreeUnit] = useState(<WiCelsius></WiCelsius>);
+  const [degreesUnit, setDegreeUnit] = useState(
+    <WiCelsius role="none"></WiCelsius>
+  );
   const [speedUnit, setSpeedUnit] = useState("kph");
   const [distanceUnit, setDistanceUnit] = useState("km");
   const [pressureUnit, setPressureUnit] = useState("mb");
@@ -228,7 +230,7 @@ function App() {
     setWindSpeed(data.current.wind_mph);
     setPressure(data.current.pressure_in);
     setSpeedUnit("mph");
-    setDegreeUnit(<WiFahrenheit></WiFahrenheit>);
+    setDegreeUnit(<WiFahrenheit role="none"></WiFahrenheit>);
     setLiquidUnit("in");
     setDistanceUnit("miles");
     setPressureUnit("in");
@@ -243,7 +245,7 @@ function App() {
     setWindSpeed(data.current.wind_kph);
     setPressure(data.current.pressure_mb);
     setSpeedUnit("kph");
-    setDegreeUnit(<WiCelsius></WiCelsius>);
+    setDegreeUnit(<WiCelsius role="none"></WiCelsius>);
     setLiquidUnit("mm");
     setDistanceUnit("km");
     setPressureUnit("mb");
@@ -255,6 +257,7 @@ function App() {
     if (windDirection.includes("N") && windDirection.includes("E")) {
       return (
         <WiDirectionUpRight
+          role="none"
           className="wind-icon"
           size={windDirectionIconSize}
         ></WiDirectionUpRight>
@@ -262,6 +265,7 @@ function App() {
     } else if (windDirection.includes("N") && windDirection.includes("W")) {
       return (
         <WiDirectionUpLeft
+          role="none"
           className="wind-icon"
           size={windDirectionIconSize}
         ></WiDirectionUpLeft>
@@ -269,6 +273,7 @@ function App() {
     } else if (windDirection === "N") {
       return (
         <WiDirectionUp
+          role="none"
           className="wind-icon"
           size={windDirectionIconSize}
         ></WiDirectionUp>
@@ -276,6 +281,7 @@ function App() {
     } else if (windDirection.includes("E") && windDirection.includes("S")) {
       return (
         <WiDirectionDownRight
+          role="none"
           className="wind-icon"
           size={windDirectionIconSize}
         ></WiDirectionDownRight>
@@ -283,6 +289,7 @@ function App() {
     } else if (windDirection === "E") {
       return (
         <WiDirectionRight
+          role="none"
           className="wind-icon"
           size={windDirectionIconSize}
         ></WiDirectionRight>
@@ -290,6 +297,7 @@ function App() {
     } else if (windDirection.includes("S") && windDirection.includes("W")) {
       return (
         <WiDirectionUpLeft
+          role="none"
           className="wind-icon"
           size={windDirectionIconSize}
         ></WiDirectionUpLeft>
@@ -297,6 +305,7 @@ function App() {
     } else if (windDirection === "S") {
       return (
         <WiDirectionDown
+          role="none"
           className="wind-icon"
           size={windDirectionIconSize}
         ></WiDirectionDown>
@@ -304,12 +313,13 @@ function App() {
     } else if (windDirection === "W") {
       return (
         <WiDirectionLeft
+          role="none"
           className="wind-icon"
           size={windDirectionIconSize}
         ></WiDirectionLeft>
       );
     } else {
-      return <p>N/A</p>;
+      return <p role="none">N/A</p>;
     }
   };
 
@@ -324,6 +334,7 @@ function App() {
       if (weatherCondition === "sunny" || weatherCondition.includes("clear")) {
         return (
           <WiDaySunny
+            role="none"
             className="condition-icon"
             size={56}
             color={darkMode ? "#fff" : "#000"}
@@ -332,6 +343,7 @@ function App() {
       } else if (weatherCondition.includes("thunder")) {
         return (
           <WiDayThunderstorm
+            role="none"
             className="condition-icon"
             size={56}
             color={darkMode ? "#fff" : "#000"}
@@ -340,6 +352,7 @@ function App() {
       } else if (weatherCondition === "partly cloudy") {
         return (
           <WiDayCloudy
+            role="none"
             className="condition-icon"
             size={56}
             color={darkMode ? "#fff" : "#000"}
@@ -351,6 +364,7 @@ function App() {
       ) {
         return (
           <WiCloudy
+            role="none"
             className="condition-icon"
             size={56}
             color={darkMode ? "#fff" : "#000"}
@@ -362,6 +376,7 @@ function App() {
       ) {
         return (
           <WiDaySprinkle
+            role="none"
             className="condition-icon"
             size={56}
             color={darkMode ? "#fff" : "#000"}
@@ -370,6 +385,7 @@ function App() {
       } else if (weatherCondition.includes("rain")) {
         return (
           <WiDayRain
+            role="none"
             className="condition-icon"
             size={56}
             color={darkMode ? "#fff" : "#000"}
@@ -380,12 +396,14 @@ function App() {
         weatherCondition.includes("blizzard")
       ) {
         <WiDaySnow
+          role="none"
           className="condition-icon"
           size={56}
           color={darkMode ? "#fff" : "#000"}
         ></WiDaySnow>;
       } else if (weatherCondition.includes("sleet")) {
         <WiDaySleet
+          role="none"
           className="condition-icon"
           size={56}
           color={darkMode ? "#fff" : "#000"}
@@ -395,17 +413,19 @@ function App() {
         weatherCondition === "fog"
       ) {
         <WiDayFog
+          role="none"
           className="condition-icon"
           size={56}
           color={darkMode ? "#fff" : "#000"}
         ></WiDayFog>;
       } else {
-        return <p>N/A</p>;
+        return <p role="none">N/A</p>;
       }
     } else {
       if (weatherCondition === "clear") {
         return (
           <WiNightClear
+            role="none"
             className="condition-icon"
             size={56}
             color={darkMode ? "#fff" : "#000"}
@@ -414,6 +434,7 @@ function App() {
       } else if (weatherCondition.includes("thunder")) {
         return (
           <WiNightThunderstorm
+            role="none"
             className="condition-icon"
             size={56}
             color={darkMode ? "#fff" : "#000"}
@@ -422,6 +443,7 @@ function App() {
       } else if (weatherCondition === "partly cloudy") {
         return (
           <WiNightCloudy
+            role="none"
             className="condition-icon"
             size={56}
             color={darkMode ? "#fff" : "#000"}
@@ -433,6 +455,7 @@ function App() {
       ) {
         return (
           <WiCloudy
+            role="none"
             className="condition-icon"
             size={56}
             color={darkMode ? "#fff" : "#000"}
@@ -444,6 +467,7 @@ function App() {
       ) {
         return (
           <WiNightSprinkle
+            role="none"
             className="condition-icon"
             size={56}
             color={darkMode ? "#fff" : "#000"}
@@ -452,6 +476,7 @@ function App() {
       } else if (weatherCondition.includes("rain")) {
         return (
           <WiNightRain
+            role="none"
             className="condition-icon"
             size={56}
             color={darkMode ? "#fff" : "#000"}
@@ -462,12 +487,14 @@ function App() {
         weatherCondition.includes("blizzard")
       ) {
         <WiNightSnow
+          role="none"
           className="condition-icon"
           size={56}
           color={darkMode ? "#fff" : "#000"}
         ></WiNightSnow>;
       } else if (weatherCondition.includes("sleet")) {
         <WiNightSleet
+          role="none"
           className="condition-icon"
           size={56}
           color={darkMode ? "#fff" : "#000"}
@@ -477,12 +504,13 @@ function App() {
         weatherCondition === "fog"
       ) {
         <WiNightFog
+          role="none"
           className="condition-icon"
           size={56}
           color={darkMode ? "#fff" : "#000"}
         ></WiNightFog>;
       } else {
-        return <p>N/A</p>;
+        return <p role="none">N/A</p>;
       }
     }
 
@@ -541,6 +569,7 @@ function App() {
         <div className="search-container">
           <div className="search-bar">
             <input
+              aria-label="City Name Input Field"
               type="text"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
@@ -549,6 +578,8 @@ function App() {
             />
           </div>
           <div
+            tabIndex={0}
+            role="button"
             aria-label="Search City Button"
             className={`search-button ${darkMode ? "dark-d" : "light-d"}`}
             onClick={() => {
@@ -557,16 +588,17 @@ function App() {
               } catch (e) {}
             }}
           >
-            <Search stroke="#fff" />
+            <Search role="none" stroke="#fff" />
           </div>
           <div
+            role="button"
             aria-label="Toggle Search History Visbility"
             className={`search-button search-history-button ${
               darkMode ? "dark-d" : "light-d"
             }`}
             onClick={() => toggleSearchHistory()}
           >
-            <Book stroke="#fff" />
+            <Book role="none" stroke="#fff" />
           </div>
         </div>
         {<p className="errorMessage">{errMsg}</p>}
@@ -603,6 +635,8 @@ function App() {
         </div>
         <div className="settings-container">
           <div
+            tabIndex={0}
+            role="button"
             aria-label="Toggle Dark Mode"
             className={`button dark-mode-button ${
               darkMode ? "dark-d" : "light-b"
@@ -612,6 +646,8 @@ function App() {
             {darkMode ? "Light Mode" : "Dark Mode"}
           </div>
           <div
+            tabIndex={0}
+            role="button"
             aria-label="Change Unit System To Metric"
             className={`button metric-system-button ${
               darkMode ? "dark-d" : "light-b"
@@ -621,6 +657,8 @@ function App() {
             M
           </div>
           <div
+            tabIndex={0}
+            role="button"
             aria-label="Change Unit System To Imperial"
             className={`button imperial-system-button ${
               darkMode ? "dark-d" : "light-b"
@@ -635,8 +673,17 @@ function App() {
         <div className="today-forecast-container">
           <div className={`inner-container ${darkMode ? "dark-b" : "light-b"}`}>
             <div className="current-forecast-container">
-              <div className="main-title-container">
-                <p className="main-title">
+              <div
+                role="heading"
+                aria-level="1"
+                className="main-title-container"
+              >
+                <p
+                  aria-label="contentinfo"
+                  role="heading"
+                  aria-level="1"
+                  className="main-title"
+                >
                   {city}, {region}
                 </p>
                 <p className="minor-data">last updated: {lastUpdated}</p>
@@ -648,7 +695,9 @@ function App() {
                     {temp}
                     {degreesUnit}
                   </div>
-                  <p className="condition-text">{condition}</p>
+                  <p role="heading" aria-level="2" className="condition-text">
+                    {condition}
+                  </p>
                 </div>
 
                 <div className="feels-like-container">
@@ -740,9 +789,18 @@ function App() {
                 className={`inner-container ${darkMode ? "dark-b" : "light-b"}`}
               >
                 <div className="data-text-container">
-                  <div className="title-container">
-                    <WiRaindrop className="indicator-icon"></WiRaindrop>
-                    <p className="title">Percipitation</p>
+                  <div
+                    role="heading"
+                    aria-level="2"
+                    className="title-container"
+                  >
+                    <WiRaindrop
+                      role="none"
+                      className="indicator-icon"
+                    ></WiRaindrop>
+                    <p role="heading" aria-level="2" className="title">
+                      Percipitation
+                    </p>
                   </div>
                   <div className="percipitation-amount-container">
                     <p className="main-amount-title">{precipitation}</p>
@@ -771,9 +829,18 @@ function App() {
                 className={`inner-container ${darkMode ? "dark-b" : "light-b"}`}
               >
                 <div className="data-text-container">
-                  <div className="title-container">
-                    <WiHumidity className="indicator-icon"></WiHumidity>
-                    <p className="title">Humidity</p>
+                  <div
+                    role="heading"
+                    aria-level="2"
+                    className="title-container"
+                  >
+                    <WiHumidity
+                      role="none"
+                      className="indicator-icon"
+                    ></WiHumidity>
+                    <p role="heading" aria-level="2" className="title">
+                      Humidity
+                    </p>
                   </div>
                   <div className="percipitation-amount-container">
                     <p className="main-amount-title">{humidity}</p>
@@ -804,9 +871,18 @@ function App() {
                 className={`inner-container ${darkMode ? "dark-b" : "light-b"}`}
               >
                 <div className="data-text-container">
-                  <div className="title-container">
-                    <WiStrongWind className="indicator-icon"></WiStrongWind>
-                    <p className="title">Wind</p>
+                  <div
+                    role="heading"
+                    aria-level="2"
+                    className="title-container"
+                  >
+                    <WiStrongWind
+                      role="none"
+                      className="indicator-icon"
+                    ></WiStrongWind>
+                    <p role="heading" aria-level="2" className="title">
+                      Wind
+                    </p>
                   </div>
                   <div className="percipitation-amount-container">
                     <p className="main-amount-title">{windSpeed}</p>
@@ -817,7 +893,7 @@ function App() {
                   {getWindDirectionIcon(windDirection)}
                   <div className="text-degree-container">
                     {windDirection}, {windDegree}
-                    <WiDegrees size={32}></WiDegrees>
+                    <WiDegrees role="none" size={32}></WiDegrees>
                   </div>
                 </div>
               </div>
@@ -827,9 +903,18 @@ function App() {
                 className={`inner-container ${darkMode ? "dark-b" : "light-b"}`}
               >
                 <div className="data-text-container">
-                  <div className="title-container">
-                    <WiSmallCraftAdvisory className="indicator-icon"></WiSmallCraftAdvisory>
-                    <p className="title">Other Indexes</p>
+                  <div
+                    role="heading"
+                    aria-level="2"
+                    className="title-container"
+                  >
+                    <WiSmallCraftAdvisory
+                      role="none"
+                      className="indicator-icon"
+                    ></WiSmallCraftAdvisory>
+                    <p role="heading" aria-level="2" className="title">
+                      Other Indexes
+                    </p>
                   </div>
                   <div className="percipitation-amount-container"></div>
                 </div>
