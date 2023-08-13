@@ -2,6 +2,9 @@ import "./App.css";
 import "./AppResponsive.css";
 import React, { useState, useEffect } from "react";
 
+/*import translator to adhere to i18n*/
+import { useTranslation } from "react-i18next";
+
 /*weather icons*/
 import {
   WiCelsius,
@@ -57,7 +60,7 @@ import {
 import HistoryCard from "./components/HistoryCard";
 
 function App() {
-  const apiKey = "611f5673b3a144d1bb2165643233107";
+  const apiKey = "98b1a8e299a147bd920180721231308";
 
   //for setting if elements are visible or not
   const [searchVisible, setSearchVisible] = useState(true);
@@ -563,6 +566,9 @@ function App() {
     },
   ];
 
+  /*language translation components*/
+  const { t } = useTranslation();
+
   return (
     <main className={`App ${darkMode ? "dark-d" : "light-d"}`}>
       <div className={`menu ${darkMode ? "dark-a" : "light-a"}`}>
@@ -573,7 +579,7 @@ function App() {
               type="text"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              placeholder="City name..."
+              placeholder={t("cityName")}
               className="search-bar"
             />
           </div>
@@ -643,7 +649,7 @@ function App() {
             }`}
             onClick={() => toggleDarkMode()}
           >
-            {darkMode ? "Light Mode" : "Dark Mode"}
+            {darkMode ? t("lightMode") : t("darkMode")}
           </div>
           <div
             tabIndex={0}
@@ -686,7 +692,9 @@ function App() {
                 >
                   {city}, {region}
                 </p>
-                <p className="minor-data">last updated: {lastUpdated}</p>
+                <p className="minor-data">
+                  {t("lastUpdated")} {lastUpdated}
+                </p>
               </div>
               <div className="weather-container">
                 <div
@@ -705,7 +713,8 @@ function App() {
 
                 <div className="feels-like-container">
                   <div className="feels-like-text">
-                    feels like: {feelsLike}
+                    {t("feelsLike")}
+                    {feelsLike}
                     {degreesUnit}
                   </div>
                 </div>
@@ -832,7 +841,7 @@ function App() {
                       className="indicator-icon"
                     ></WiRaindrop>
                     <p role="heading" aria-level="2" className="title">
-                      Percipitation
+                      {t("precipitation")}
                     </p>
                   </div>
                   <div className="percipitation-amount-container">
@@ -877,7 +886,7 @@ function App() {
                       className="indicator-icon"
                     ></WiHumidity>
                     <p role="heading" aria-level="2" className="title">
-                      Humidity
+                      {t("humidity")}
                     </p>
                   </div>
                   <div className="percipitation-amount-container">
@@ -921,7 +930,7 @@ function App() {
                       className="indicator-icon"
                     ></WiStrongWind>
                     <p role="heading" aria-level="2" className="title">
-                      Wind
+                      {t("wind")}
                     </p>
                   </div>
                   <div className="percipitation-amount-container">
@@ -953,7 +962,7 @@ function App() {
                       className="indicator-icon"
                     ></WiSmallCraftAdvisory>
                     <p role="heading" aria-level="2" className="title">
-                      Other Indexes
+                      {t("otherIndexes")}
                     </p>
                   </div>
                   <div className="percipitation-amount-container"></div>
@@ -972,7 +981,7 @@ function App() {
                   <div className="double-index">
                     <div className="index-container">
                       <p role="heading" aria-level="3">
-                        Visibility
+                        {t("visibility")}
                       </p>
                       <div className="index-indicator-container">
                         <p role="heading" aria-level="3">
@@ -982,7 +991,7 @@ function App() {
                     </div>
                     <div className="index-container">
                       <p role="heading" aria-level="3">
-                        Pressure
+                        {t("pressure")}
                       </p>
                       <div className="index-indicator-container">
                         <p role="heading" aria-level="3">
@@ -994,7 +1003,7 @@ function App() {
                   <div className="double-index">
                     <div className="index-container">
                       <p role="heading" aria-level="3">
-                        Sunrise
+                        {t("sunrise")}
                       </p>
                       <div className="index-indicator-container">
                         <p role="heading" aria-level="3">
@@ -1004,7 +1013,7 @@ function App() {
                     </div>
                     <div className="index-container">
                       <p role="heading" aria-level="3">
-                        Sunset
+                        {t("sunset")}
                       </p>
                       <div className="index-indicator-container">
                         <p role="heading" aria-level="3">
